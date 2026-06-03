@@ -5,6 +5,7 @@ from fastapi import FastAPI,Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
+
 load_dotenv()
 
 connection = psycopg.connect(
@@ -29,3 +30,10 @@ def read_items(request: Request, name: str = "Taybah"):
         name="index.html",
         context={"name": name}
     )
+    
+@app.get("/coins")
+def get_coins():
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM coins.coins")
+        coins = cursor.fetchall()
+        return coins
