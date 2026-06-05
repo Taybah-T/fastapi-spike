@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from main import app,  connection
+from main import app,  connection, insert_coin
 client=TestClient(app)
 
 # def test_read_main():
@@ -20,7 +20,7 @@ def test_for_coin():
     assert len(coins) > 0
     
 
-def test_for_coin():
+def test_for_coin_assemble():
     response = client.get("/coins")
 
     assert response.status_code == 200
@@ -29,3 +29,14 @@ def test_for_coin():
     print(coins)
 
     assert [1, "Assemble"] in coins
+
+def test_for_biscuit():
+    response = client.post("/coins")
+    assert response.status_code == 201
+    
+    
+    coins = response.json()
+    print(coins)
+
+    assert [14, "Biscuit"] in coins
+
