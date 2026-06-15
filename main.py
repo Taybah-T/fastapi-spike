@@ -1,6 +1,5 @@
 from peewee import *
 import os 
-import psycopg
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from uuid import uuid4
@@ -51,3 +50,14 @@ db.create_tables([
     Duties,
     JoinCoinsAndDuties
 ], safe=True)
+
+# now creating the routes - should the above be seperated out maybe for cc
+# TODO: look into seperation 
+
+# decorator
+@app.get("/coins")
+# method
+def get_coins():
+    coins = Coins.select()
+    return []
+
