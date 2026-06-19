@@ -16,50 +16,50 @@ def test_for_coin():
     assert isinstance(coins, list)
     
 
-# def test_for_adding_coins():
-#     db.connect(reuse_if_open=True)
-#     test_duty = Duties.create(
-#         duty_name="Duty 8",
-#         duty_description="Evolve and define architecture, utilising the knowledge and experience of the team to design in an optimal user experience, scalability, security, high availability and optimal performance."
-#         )
+def test_for_adding_coins():
+    db.connect(reuse_if_open=True)
+    test_duty = Duties.create(
+        duty_name="Duty 8",
+        duty_description="Evolve and define architecture, utilising the knowledge and experience of the team to design in an optimal user experience, scalability, security, high availability and optimal performance."
+        )
     
-#     db.close()
+    db.close()
 
-#     coin_to_add = {
-#         "coin_name": "Assemble",
-#         "coin_complete": False,
-#         "duty_ids": [str(test_duty.duty_id)]
-#     }
+    coin_to_add = {
+        "coin_name": "Assemble",
+        "coin_complete": False,
+        "duty_ids": [str(test_duty.duty_id)]
+    }
 
-#     response = client.post("/coins", json=coin_to_add )
+    response = client.post("/coins", json=coin_to_add )
 
-#     assert response.status_code == 201
-#     assert "coin_name" in response.json()
+    assert response.status_code == 201
+    assert "coin_name" in response.json()
 
-# def test_for_no_duplicate_coins():
-#     test_coin = {
-#           "coin_name": "Assemble",
-#         "coin_complete": False,
-#         "duty_ids": []
-#     }
+def test_for_no_duplicate_coins():
+    test_coin = {
+          "coin_name": "Assemble",
+        "coin_complete": False,
+        "duty_ids": []
+    }
 
-#     response = client.post("/coins", json=test_coin )
+    response = client.post("/coins", json=test_coin )
 
-#     assert response.status_code == 400
+    assert response.status_code == 400
 
 
-# def test_for_updating_coin():
-#     db.connect(reuse_if_open=True)
-#     coin = Coins.create(coin_name="Assemble", coin_complete=False)
-#     db.close()
+def test_for_updating_coin():
+    db.connect(reuse_if_open=True)
+    coin = Coins.create(coin_name="Assemble", coin_complete=False)
+    db.close()
 
-#     update_coin = {
-#         "coin_name": "General Assemble",
-#         "coin_complete": True,
-#         "duty_ids": []
-#     }
+    update_coin = {
+        "coin_name": "General Assemble",
+        "coin_complete": True,
+        "duty_ids": []
+    }
 
-#     response = client.put(f"/coins/{coin.coin_id}", json=update_coin)
+    response = client.put(f"/coins/{coin.coin_id}", json=update_coin)
 
-#     assert response.status_code == 200
+    assert response.status_code == 200
 
